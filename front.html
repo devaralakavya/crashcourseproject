@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style_new.css">
+        <script>
+        function validateForm() {
+          let x = document.forms["myForm"]["fname"].value;
+          if (x == "") {
+            alert("First Name must be filled out");
+            return false;
+          }
+
+          let y = document.forms["myForm"]["lname"].value;
+          if (y == "") {
+            alert("Last Name must be filled out");
+            return false;
+          }
+
+          let a = document.forms["myForm"]["city"].value;
+          if (a == "") {
+            alert("City Name must be filled out");
+            return false;
+          }
+
+          let b = document.forms["myForm"]["add"].value;
+          if (b == "") {
+            alert("Address must be filled out");
+            return false;
+          }
+
+          let c = document.forms["myForm"]["phn"].value;
+          if (c == "") {
+            alert("Phone numbe rmust  be filled out");
+            return false;
+          }
+
+          let d = document.forms["myForm"]["dob"].value;
+          if (d == "") {
+            alert("DOB must be filled out");
+            return false;
+          }
+
+         
+       
+        var dob = document.getElementById("dob").value;
+         
+        var now = new Date();
+        var birthdate = dob.split("/");
+        //var born = new Date(dob.toString());
+        var born = new Date(birthdate[2], birthdate[0]-1, birthdate[1]);
+        age=get_age(born,now);
+        if (age<18 || age>50)
+        {
+            alert("You need to be 18 years of age or less than 50 !!");
+            return false;
+        }
+
+    }
+
+    function get_age(born, now) {
+      var birthday = new Date(now.getFullYear(), born.getMonth(), born.getDate());
+      if (now >= birthday) 
+        return now.getFullYear() - born.getFullYear();
+      else
+        return now.getFullYear() - born.getFullYear() - 1;
+    }
+        
+
+       
+
+        </script>
+        </head>
+    <body>
+        <div class="allinone" >
+            <h1>YUMM RESTAURANT</h1>
+
+            <form action="" name="myForm" onsubmit="return validateForm()">
+                
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname" maxlength="25" minlength="5">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname" maxlength="25" minlength="5"><br><br>
+                
+                <label for="dob">DOB:</label>
+            
+                
+                <input type="text" class="datepicker minimumSize" name="dob" id="dob"/>&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <label for="city">City:</label>
+                <input list="cities" id="city" name="city">
+                <datalist id="cities">
+                    <option value="Mumbai">
+                    <option value="Pune">
+                    <option value="Delhi">
+                    <option value="Kanpur">
+                    <option value="Nashik">
+                    <option value="Chennai">
+                    <option value="Kolhapur">
+                </datalist><br><br>&emsp;&emsp;&emsp;
+                <label for="add">Address:</label>
+                <textarea maxlength="150" id="add" name="add"></textarea>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                
+                <label for="phn">Mobile Number:</label>
+                
+                <input type="text" pattern="[7-9]{1}[0-9]{9}"  id="phn" name="phn"><br><br>
+                <input type="reset" class="button btn" value="Reset">
+                <input type="submit" class="button btn" value="Submit" id="button" >
+            </form>
+        </div>
+    </body>
+</html>
